@@ -1,0 +1,25 @@
+name: Daily Commit
+
+on:
+  schedule:
+    # Ejecuta el script todos los días a las 00:00 UTC
+    - cron: '0 0 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run daily commit script
+      run: node dist/dailyCommit.js
