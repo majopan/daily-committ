@@ -7,7 +7,7 @@ on:
 
 jobs:
   daily-commit:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
     # Paso 1: Clonar el repositorio
