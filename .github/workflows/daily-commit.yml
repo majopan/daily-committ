@@ -1,26 +1,23 @@
 name: Daily Commit
 
 on:
-  workflow_dispatch: # Habilita la ejecución manual
+  workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *' # Ejecuta diariamente a medianoche UTC
+    - cron: '0 0 * * *'
 
 jobs:
   daily-commit:
     runs-on: ubuntu-24.04
 
     steps:
-    # Paso 1: Clonar el repositorio
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # Paso 2: Configurar nombre y correo del usuario de git
     - name: Set up Git user
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-    # Paso 3: Realizar el commit diario
     - name: Make daily commit
       run: |
         echo "Commit realizado el: $(date)" >> daily-log.txt
